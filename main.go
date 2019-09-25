@@ -9,13 +9,11 @@ type Item struct {
 	Value interface{}
 }
 
-// List 2way
 type List struct {
 	FirstItem *Item
 	LastItem  *Item
+	Lenght    int
 }
-
-// NewList cool
 
 func main() {
 	var newList List
@@ -31,7 +29,6 @@ func main() {
 	fmt.Printf("%d %d %d", a.Value, b.Value, x)
 }
 
-//PushFront in first
 func (l *List) PushFront(v int) {
 	var newItem Item
 	newItem.Value = v
@@ -44,9 +41,9 @@ func (l *List) PushFront(v int) {
 		newItem.Prev = nil
 		l.FirstItem = &newItem
 	}
+	l.Lenght++
 }
 
-//PushBack back
 func (l *List) PushBack(v int) {
 	var newItem Item
 	newItem.Value = v
@@ -59,9 +56,9 @@ func (l *List) PushBack(v int) {
 		newItem.Next = nil
 		l.LastItem = &newItem
 	}
+	l.Lenght++
 }
 
-//Remove delete
 func (l *List) Remove(i Item) {
 	if i.Prev == nil {
 		l.FirstItem = i.Next
@@ -73,32 +70,19 @@ func (l *List) Remove(i Item) {
 	} else {
 		i.Next.Prev = i.Prev
 	}
+	l.Lenght--
 }
 
-//Len asdf
 func (l *List) Len() int {
-
-	if l.FirstItem == nil {
-		return 0
-	}
-	count := 1
-	next := l.FirstItem.Next
-	for next != nil {
-		next = next.Next
-		count++
-	}
-	return count
-
+	return l.Lenght
 }
 
-//First asdf
 func (l *List) First() *Item {
 
 	return l.FirstItem
 
 }
 
-//Last asdf
 func (l *List) Last() *Item {
 
 	return l.LastItem
