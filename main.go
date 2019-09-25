@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// Item 2way
 type Item struct {
 	Next  *Item
 	Prev  *Item
